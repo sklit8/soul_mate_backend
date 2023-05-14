@@ -60,14 +60,6 @@ mybatis-plus:
 #    bucket: xxx
 
 
-# 第三方登录配置 申请地址 https://uniqueker.top/
-#third:
-#  config:
-#    appId: xxxx
-#    appKey: xxxx
-#    redirectUrl: xxxx
-
-
 
 
 
