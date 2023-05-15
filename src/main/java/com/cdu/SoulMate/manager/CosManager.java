@@ -14,7 +14,7 @@ import java.io.File;
  *
  * @author luokunsong
  */
-//@Component
+@Component
 public class CosManager {
 
     @Resource
