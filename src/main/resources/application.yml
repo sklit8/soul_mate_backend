@@ -54,10 +54,10 @@ mybatis-plus:
 #  腾讯云cos配置
 cos:
   client:
-    secretId: AKIDNft9HCyeDd4BLPI91veFsW0RrBwUs7PV
-    secretKey: 8FF4f6NWSBj7SddzITVO8kDZq08HQSOA
-    region: ap-chengdu
-    bucket: luokunsong-1314381326
+    secretId: xx
+    secretKey: xx
+    region: ap-xx
+    bucket: xx-xx
 
 
 
