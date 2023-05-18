@@ -111,6 +111,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return user.getId();
     }
 
+    /**
+     *根据用户名查询用户
+     */
     @Override
     public List<User> userQuery(UserQueryRequest userQueryRequest, HttpServletRequest request) {
         isLogin(request);
@@ -130,11 +133,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (userAccount.length() < 4) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号不能小于4位");
         }
-        // 2. 账户长度不大于16位
+        // 3. 账户长度不大于16位
         if (userAccount.length() > 16) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号不能大于16位");
         }
-        // 3. 密码就不小于8位吧
+        // 4. 密码就不小于8位吧
         if (userPassword.length() < 8) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码小于8位 ");
         }
