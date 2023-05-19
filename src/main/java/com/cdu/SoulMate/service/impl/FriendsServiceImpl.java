@@ -35,7 +35,7 @@ import static com.cdu.SoulMate.contant.FriendConstant.*;
 import static com.cdu.SoulMate.utils.StringUtils.stringJsonListToLongSet;
 
 /**
- * @author luokunsong
+ * @author liuyanjia
  * @description 针对表【friends(好友申请管理表)】的数据库操作Service实现
  * @createDate 2023-04-17 09:28:08
  */
