@@ -145,6 +145,11 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         }).collect(Collectors.toList());
     }
 
+    /**
+     * 获取申请数量
+     * @param loginUser
+     * @return
+     */
     @Override
     public int getRecordCount(User loginUser) {
         LambdaQueryWrapper<Friends> friendsLambdaQueryWrapper = new LambdaQueryWrapper<>();
