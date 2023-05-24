@@ -45,6 +45,7 @@ public class WebSocket {
     private static final Map<String, ConcurrentHashMap<String, WebSocket>> ROOMS = new HashMap<>();
     /**
      * 线程安全的无序的集合
+     *
      */
     private static final CopyOnWriteArraySet<Session> SESSIONS = new CopyOnWriteArraySet<>();
     /**
