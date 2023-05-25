@@ -175,7 +175,6 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat>
     /**
      * 聊天记录映射
      *
-     * @param fromId
      * @param toId
      * @param text
      * @param chatType
@@ -199,6 +198,13 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat>
         return messageVo;
     }
 
+    /**
+     * 队伍聊天
+     * @param chatRequest
+     * @param chatType
+     * @param loginUser
+     * @return
+     */
     @Override
     public List<MessageVo> getTeamChat(ChatRequest chatRequest, int chatType, User loginUser) {
         Long teamId = chatRequest.getTeamId();
@@ -220,6 +226,13 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat>
     }
 
 
+    /**
+     *
+     * @param loginUser
+     * @param userId
+     * @param chatLambdaQueryWrapper
+     * @return
+     */
     private List<MessageVo> returnMessage(User loginUser, Long userId, LambdaQueryWrapper<Chat> chatLambdaQueryWrapper) {
         List<Chat> chatList = this.list(chatLambdaQueryWrapper);
         return chatList.stream().map(chat -> {
