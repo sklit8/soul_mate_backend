@@ -225,6 +225,8 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         return flag.get();
     }
 
+
+
     /**
      * 取消好友申请
      * @param id        申请记录id
@@ -240,6 +242,7 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         friend.setStatus(REVOKE_STATUS);
         return this.updateById(friend);
     }
+
 }
 
 
