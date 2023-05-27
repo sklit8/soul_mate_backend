@@ -90,7 +90,7 @@ public class UserController {
                 return ResultUtil.success(fixTheFirstUser(userList));
             }
         } else {
-            List<User> userList = (List<User>) valueOperations.get("jujiaoyuan:user:notLogin");
+            List<User> userList = (List<User>) valueOperations.get("soul_mate:user:notLogin");
             if (userList != null) {
                 // 打乱并固定第一个用户
                 return ResultUtil.success(fixTheFirstUser(userList));
@@ -109,7 +109,7 @@ public class UserController {
                 LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();
                 Page<User> page = userService.page(userPage, userLambdaQueryWrapper);
                 result = fixTheFirstUser(page.getRecords()).stream().map(user -> userService.getSafetyUser(user)).collect(Collectors.toList());
-                redisTemplate.opsForValue().set("jujiaoyuan:user:notLogin", result, 10, TimeUnit.MINUTES);
+                redisTemplate.opsForValue().set("soul_mate:user:notLogin", result, 10, TimeUnit.MINUTES);
             }
         } catch (Exception e) {
             log.error("redis set key error", e);

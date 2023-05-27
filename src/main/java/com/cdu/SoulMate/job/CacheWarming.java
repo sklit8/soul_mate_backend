@@ -63,7 +63,7 @@ public class CacheWarming {
      */
     @Scheduled(cron = "0 30 2 * * *")
     public void searchUserList() {
-        RLock rLock = redissonClient.getLock("jujiaoyuan:cache:searchUserList:lock");
+        RLock rLock = redissonClient.getLock("soul_mate:cache:searchUserList:lock");
         try {
             if (rLock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
                 for (Long mainUserId : mainUserList) {
@@ -92,13 +92,13 @@ public class CacheWarming {
      */
     @Scheduled(cron = "0 20 2 * * *")
     public void searchTeamList() {
-        RLock rLock = redissonClient.getLock("jujiaoyuan:cache:searchTeamList:lock");
+        RLock rLock = redissonClient.getLock("soul_mate:cache:searchTeamList:lock");
         try {
             if (rLock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
                 List<Team> list = teamService.list();
                 TeamUserVo teamUserVo = teamService.teamSet(list);
                 try {
-                    redisTemplate.opsForValue().set("jujiaoyuan:team:getTeams:getTeams", teamUserVo, 1 + RandomUtil.randomInt(1, 5), TimeUnit.MINUTES);
+                    redisTemplate.opsForValue().set("soul_mate:team:getTeams:getTeams", teamUserVo, 1 + RandomUtil.randomInt(1, 5), TimeUnit.MINUTES);
                 } catch (Exception e) {
                     log.error("redis set key error", e);
                 }
@@ -119,7 +119,7 @@ public class CacheWarming {
     @Scheduled(cron = "0 0 0 * * *")
     @Transactional(rollbackFor = Exception.class)
     public void dissolutionExpiredTeam() {
-        RLock rLock = redissonClient.getLock("jujiaoyuan:cache:dissolutionExpiredTeam:lock");
+        RLock rLock = redissonClient.getLock("soul_mate:cache:dissolutionExpiredTeam:lock");
         try {
             if (rLock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
                 List<Team> teamList = teamService.list();
@@ -156,7 +156,7 @@ public class CacheWarming {
      */
     // @Scheduled(cron = "0 0 0 */7 * ?")
     public void chatRecords() {
-        RLock rLock = redissonClient.getLock("jujiaoyuan:cache:chatRecords:lock");
+        RLock rLock = redissonClient.getLock("soul_mate:cache:chatRecords:lock");
         try {
             if (rLock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
                 boolean remove = chatService.remove(null);
@@ -176,7 +176,7 @@ public class CacheWarming {
      */
     @Scheduled(cron = "* 20 * * * ?")
     public void isExpires() {
-        RLock rLock = redissonClient.getLock("jujiaoyuan:cache:isExpires:lock");
+        RLock rLock = redissonClient.getLock("soul_mate:cache:isExpires:lock");
         try {
             if (rLock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
                 List<Friends> friendsList = friendsService.list();

@@ -44,8 +44,8 @@ import static com.cdu.SoulMate.utils.StringUtils.stringJsonListToLongSet;
 @Slf4j
 public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements TeamService {
     private static final String SALT = "qimu_team";
-    private static final String BY_TEAM_IDS = String.format("jujiaoyuan:team:getTeamListByTeamIds:%s", "byTeamIds");
-    private static final String TEAMS_KEY = String.format("jujiaoyuan:team:getTeams:%s", "getTeams");
+    private static final String BY_TEAM_IDS = String.format("soul_mate:team:getTeamListByTeamIds:%s", "byTeamIds");
+    private static final String TEAMS_KEY = String.format("soul_mate:team:getTeams:%s", "getTeams");
     @Resource
     private RedissonClient redissonClient;
     @Resource
@@ -85,7 +85,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
     public TeamUserVo teamQuery(TeamQueryRequest teamQueryRequest, HttpServletRequest request) {
         userService.isLogin(request);
         String searchText = teamQueryRequest.getSearchText();
-        String teamQueryKey = String.format("jujiaoyuan:team:teamQuery:%s", searchText);
+        String teamQueryKey = String.format("soul_mate:team:teamQuery:%s", searchText);
         ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
         TeamUserVo teamList = (TeamUserVo) valueOperations.get(teamQueryKey);
         if (teamList != null) {
@@ -127,7 +127,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
                 throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码错误");
             }
         }
-        RLock lock = redissonClient.getLock("jujiaoyuan:join_team");
+        RLock lock = redissonClient.getLock("soul_mate:join_team");
         try {
             // 抢到锁并执行
             while (true) {
@@ -167,7 +167,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
                     if (!joinTeamStatus) {
                         throw new BusinessException(ErrorCode.PARAMS_ERROR, "加入失败");
                     }
-                    String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", team.getId());
+                    String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", team.getId());
                     deleteRedisKey(teamIdKey);
                     redisTemplate.delete(userService.redisFormat(user.getId()));
                     return userService.getSafetyUser(user);
@@ -215,7 +215,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         long id = loginUser.getId();
         User user = userService.getById(id);
         String teamIds = user.getTeamIds();
-        RLock lock = redissonClient.getLock("jujiaoyuan:create_team");
+        RLock lock = redissonClient.getLock("soul_mate:create_team");
         try {
             // 抢到锁并执行
             while (true) {
@@ -371,7 +371,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         oldTeam.setAnnounce(teamUpdateRequest.getAnnounce());
         boolean updateStatus = this.updateById(oldTeam);
         if (updateStatus) {
-            String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", oldTeam.getId());
+            String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", oldTeam.getId());
             deleteRedisKey(teamIdKey);
         }
         return updateStatus;
@@ -405,7 +405,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         team.setUsersId(gson.toJson(userIds));
         boolean kickOutTeamStatUs = userService.updateById(user) && this.updateById(team);
         if (kickOutTeamStatUs) {
-            String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", team.getId());
+            String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", team.getId());
             redisTemplate.delete(userService.redisFormat(user.getId()));
             deleteRedisKey(teamIdKey);
         }
@@ -442,7 +442,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         team.setUserId(user.getId());
         boolean update = this.updateById(team);
         if (update) {
-            String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", team.getId());
+            String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", team.getId());
             redisTemplate.delete(userService.redisFormat(user.getId()));
             redisTemplate.delete(userService.redisFormat(loginUser.getId()));
             deleteRedisKey(teamIdKey);
@@ -480,7 +480,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         });
         boolean dissolutionTeam = this.removeById(team);
         if (dissolutionTeam) {
-            String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", teamId);
+            String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", teamId);
             deleteRedisKey(teamIdKey);
             redisTemplate.delete(userService.redisFormat(loginUser.getId()));
         }
@@ -502,7 +502,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
         team.setUsersId(gson.toJson(userIds));
         boolean quitUserStatus = userService.updateById(user) && this.updateById(team);
         if (quitUserStatus) {
-            String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", teamId);
+            String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", teamId);
             deleteRedisKey(teamIdKey);
             redisTemplate.delete(userService.redisFormat(user.getId()));
         }
@@ -561,7 +561,7 @@ public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements Te
             throw new BusinessException(ErrorCode.NO_AUTH, "暂无权限查看");
         }
         ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
-        String teamIdKey = String.format("jujiaoyuan:team:getUsersByTeamId:%s", teamId);
+        String teamIdKey = String.format("soul_mate:team:getUsersByTeamId:%s", teamId);
         TeamVo teams = (TeamVo) valueOperations.get(teamIdKey);
         if (teams != null) {
             return teams;

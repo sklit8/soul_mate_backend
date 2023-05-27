@@ -65,11 +65,11 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         if (loginUser.getId() == friendAddRequest.getReceiveId()) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "不能添加自己为好友");
         }
-        RLock lock = redissonClient.getLock("jujiaoyuan:apply");
+        RLock lock = redissonClient.getLock("soul_mate:apply");
         try {
             // 抢到锁并执行
             if (lock.tryLock(0, -1, TimeUnit.MILLISECONDS)) {
-                // 2.条数大于等于1 就不能再添加
+                // 查询是否已经提交好友申请
                 LambdaQueryWrapper<Friends> friendsLambdaQueryWrapper = new LambdaQueryWrapper<>();
                 friendsLambdaQueryWrapper.eq(Friends::getReceiveId, friendAddRequest.getReceiveId());
                 friendsLambdaQueryWrapper.eq(Friends::getFromId, loginUser.getId());

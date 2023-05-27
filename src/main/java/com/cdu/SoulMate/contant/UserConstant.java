@@ -15,12 +15,12 @@ public interface UserConstant {
     /**
      * 用户缓存键名称
      */
-    String USER_REDIS_KEY = String.format("jujiaoyuan:user:search:%s", "qimu");
+    String USER_REDIS_KEY = String.format("soul_mate:user:search:%s", "qimu");
 
     /**
      * 标签缓存键名称
      */
-    String TAGS_REDIS_KEY = String.format("jujiaoyuan:tags:%s", "tags");
+    String TAGS_REDIS_KEY = String.format("soul_mate:tags:%s", "tags");
 
     /**
      * 默认权限
