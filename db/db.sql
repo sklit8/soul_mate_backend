@@ -27,13 +27,13 @@ create table team
 INSERT INTO soul_mate.team (id, teamName, teamAvatarUrl, teamPassword, teamDesc, maxNum, expireTime, userId, usersId,
                               createTime, teamStatus, isDelete, announce, updateTime)
 VALUES (100001, '加密测试队', 'https://img.qimuu.icu/typory/22.jfif', '6c7bf8e3df13c49a2a11bdcfe9a81f2e', '超级无敌霸气', 5,
-        '2023-10-1 19:53:57', 10001, '[10001]', '2023-03-10 23:59:12', 2, 0, '当你对自己诚实的时候，世界上就没有人能够欺骗得了你。',
-        '2023-03-23 18:56:23');
+        '2023-10-1 19:53:57', 10001, '[10001]', '2023-05-10 23:59:12', 2, 0, '当你对自己诚实的时候，世界上就没有人能够欺骗得了你。',
+        '2023-05-23 18:56:23');
 INSERT INTO soul_mate.team (id, teamName, teamAvatarUrl, teamPassword, teamDesc, maxNum, expireTime, userId, usersId,
                               createTime, teamStatus, isDelete, announce, updateTime)
 VALUES (100002, '公开测试队', 'https://img.qimuu.icu/typory/22.jfif', '6c7bf8e3df13c49a2a11bdcfe9a81f2e', '超级无敌霸气', 5,
-        '2023-10-1 19:53:57', 10001, '[10001]', '2023-03-10 23:59:12', 0, 0, '人类最高级别的安慰，就是理解别人的痛苦，并陪伴他。',
-        '2023-03-23 18:56:23');
+        '2023-10-1 19:53:57', 10001, '[10001]', '2023-05-10 23:59:12', 0, 0, '人类最高级别的安慰，就是理解别人的痛苦，并陪伴他。',
+        '2023-05-23 18:56:23');
 
 
 -- auto-generated definition
@@ -67,7 +67,7 @@ INSERT INTO soul_mate.user (id, username, userAccount, userAvatarUrl, gender, us
 VALUES (10001, '柒木', 'qimu', 'https://img.qimuu.icu/user_avatar/1/pR5dHavR-好烦噢.jpg', 1,
         '89c7f39d98fb169ffea0698c18831fe1', 'vx:aqimu66', '阿巴阿巴', 0, 1,
         '["C#","Java","C++","找伙伴","女","求职中","男","运动","Python","音乐","上班族"]', '[100002,100001]', '[2,3,4]',
-        '2023-03-08 23:46:31', '2023-03-11 00:42:35', 0, '2483482026@qq.com');
+        '2023-05-08 23:46:31', '2023-05-11 00:42:35', 0, '2483482026@qq.com');
 
 
 -- auto-generated definition
