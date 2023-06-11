@@ -31,6 +31,12 @@ public class ChatController {
     @Resource
     private UserService userService;
 
+    /**
+     * 获取私信内容
+     * @param chatRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/privateChat")
     public BaseResponse<List<MessageVo>> getPrivateChat(@RequestBody ChatRequest chatRequest, HttpServletRequest request) {
         if (chatRequest == null) {
@@ -41,6 +47,11 @@ public class ChatController {
         return ResultUtil.success(privateChat);
     }
 
+    /**
+     * 获取大厅聊天内容
+     * @param request
+     * @return
+     */
     @GetMapping("/hallChat")
     public BaseResponse<List<MessageVo>> getHallChat(HttpServletRequest request) {
         User loginUser = userService.getLoginUser(request);
@@ -48,6 +59,12 @@ public class ChatController {
         return ResultUtil.success(hallChat);
     }
 
+    /**
+     * 获取团队聊天内容
+     * @param chatRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/teamChat")
     public BaseResponse<List<MessageVo>> getTeamChat(@RequestBody ChatRequest chatRequest, HttpServletRequest request) {
         if (chatRequest == null) {

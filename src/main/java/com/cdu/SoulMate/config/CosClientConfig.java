@@ -15,15 +15,15 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author luokunsong
  */
-//@Configuration
-//@ConfigurationProperties(prefix = "cos.client")
+@Configuration
+@ConfigurationProperties(prefix = "cos.client")
 @Data
 public class CosClientConfig {
 
     /**
      * accessKey
      */
-    private String accessKey;
+    private String secretId;
 
     /**
      * secretKey
@@ -40,10 +40,10 @@ public class CosClientConfig {
      */
     private String bucket;
 
-    //@Bean
+    @Bean
     public COSClient cosClient() {
         // 初始化用户身份信息(secretId, secretKey)
-        COSCredentials cred = new BasicCOSCredentials(accessKey, secretKey);
+        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 设置bucket的区域, COS地域的简称请参照 https://www.qcloud.com/document/product/436/6224
         ClientConfig clientConfig = new ClientConfig(new Region(region));
         // 生成cos客户端

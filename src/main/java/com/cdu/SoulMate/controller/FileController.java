@@ -30,8 +30,8 @@ import java.util.Arrays;
  *
  * @author luokunsong
  */
-//RestController
-//@RequestMapping("/file")
+@RestController
+@RequestMapping("/file")
 @Slf4j
 public class FileController {
 
