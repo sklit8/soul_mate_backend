@@ -49,6 +49,14 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat>
     @Resource
     private TeamService teamService;
 
+    /**
+     * 获取私聊聊天内容
+     *
+     * @param chatRequest
+     * @param chatType
+     * @param loginUser
+     * @return
+     */
     @Override
     public List<MessageVo> getPrivateChat(ChatRequest chatRequest, int chatType, User loginUser) {
         Long toId = chatRequest.getToId();
@@ -79,6 +87,13 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat>
         return messageVoList;
     }
 
+    /**
+     * 获取大厅聊天纪录
+     *
+     * @param chatType
+     * @param loginUser
+     * @return
+     */
     @Override
     public List<MessageVo> getHallChat(int chatType, User loginUser) {
         List<MessageVo> chatRecords = getCache(CACHE_CHAT_HALL, String.valueOf(loginUser.getId()));
@@ -156,6 +171,17 @@ public class ChatServiceImpl extends ServiceImpl<ChatMapper, Chat>
         }
     }
 
+
+    /**
+     * 聊天记录映射
+     *
+     * @param fromId
+     * @param toId
+     * @param text
+     * @param chatType
+     * @param createTime
+     * @return
+     */
     @Override
     public MessageVo chatResult(Long userId, Long toId, String text, Integer chatType, Date createTime) {
         MessageVo messageVo = new MessageVo();

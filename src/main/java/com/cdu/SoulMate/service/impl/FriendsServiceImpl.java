@@ -47,6 +47,12 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
     @Resource
     private RedissonClient redissonClient;
 
+    /**
+     * 申请添加好友
+     * @param loginUser
+     * @param friendAddRequest
+     * @return
+     */
     @Override
     public boolean addFriendRecords(User loginUser, FriendAddRequest friendAddRequest) {
         if (StringUtils.isNotBlank(friendAddRequest.getRemark()) && friendAddRequest.getRemark().length() > 120) {
@@ -98,6 +104,11 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
     }
 
 
+    /**
+     * 查询当前用户所有申请、同意记录
+     * @param loginUser
+     * @return
+     */
     @Override
     public List<FriendsRecordVO> obtainFriendApplicationRecords(User loginUser) {
         // 查询出当前用户所有申请、同意记录

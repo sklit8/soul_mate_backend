@@ -32,6 +32,12 @@ public class FriendsController {
     @Resource
     private UserService userService;
 
+    /**
+     * 添加好友功能
+     * @param friendAddRequest
+     * @param request
+     * @return
+     */
     @PostMapping("add")
     public BaseResponse<Boolean> addFriendRecords(@RequestBody FriendAddRequest friendAddRequest, HttpServletRequest request) {
         if (friendAddRequest == null) {
@@ -42,6 +48,11 @@ public class FriendsController {
         return ResultUtil.success(addStatus, "申请成功");
     }
 
+    /**
+     * 获取好友申请
+     * @param request
+     * @return
+     */
     @GetMapping("getRecords")
     public BaseResponse<List<FriendsRecordVO>> getRecords(HttpServletRequest request) {
         User loginUser = userService.getLoginUser(request);
