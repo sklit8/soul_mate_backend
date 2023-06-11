@@ -6,8 +6,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * @author luokunsong
- * @Date: 2023年03月10日 21:45
+ * @author zzc
  * @Version: 1.0
  * @Description: 队伍和用户信息封装类（脱敏）
  */
