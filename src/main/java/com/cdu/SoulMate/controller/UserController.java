@@ -218,6 +218,12 @@ public class UserController {
         return ResultUtil.success(getUser);
     }
 
+    /**
+     * 删除好友
+     * @param id
+     * @param request
+     * @return
+     */
     @PostMapping("/deleteFriend/{id}")
     public BaseResponse<Boolean> deleteFriend(@PathVariable("id") Long id, HttpServletRequest request) {
         if (id == null) {
@@ -228,6 +234,12 @@ public class UserController {
         return ResultUtil.success(deleteFriend);
     }
 
+    /**
+     * 搜索好友功能
+     * @param userQueryRequest
+     * @param request
+     * @return
+     */
     @PostMapping("/searchFriend")
     public BaseResponse<List<User>> searchFriend(@RequestBody UserQueryRequest userQueryRequest, HttpServletRequest request) {
         if (userQueryRequest == null) {

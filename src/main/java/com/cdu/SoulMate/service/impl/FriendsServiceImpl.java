@@ -145,6 +145,11 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         }).collect(Collectors.toList());
     }
 
+    /**
+     * 获取申请数量
+     * @param loginUser
+     * @return
+     */
     @Override
     public int getRecordCount(User loginUser) {
         LambdaQueryWrapper<Friends> friendsLambdaQueryWrapper = new LambdaQueryWrapper<>();
@@ -173,6 +178,12 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         return flag;
     }
 
+    /**
+     * 根据receiveId查询所有接收的申请记录
+     * @param loginUser
+     * @param fromId
+     * @return
+     */
     @Override
     public boolean agreeToApply(User loginUser, Long fromId) {
         // 0. 根据receiveId查询所有接收的申请记录
@@ -214,6 +225,14 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         return flag.get();
     }
 
+
+
+    /**
+     * 取消好友申请
+     * @param id        申请记录id
+     * @param loginUser 登录用户
+     * @return
+     */
     @Override
     public boolean canceledApply(Long id, User loginUser) {
         Friends friend = this.getById(id);
@@ -223,6 +242,7 @@ public class FriendsServiceImpl extends ServiceImpl<FriendsMapper, Friends> impl
         friend.setStatus(REVOKE_STATUS);
         return this.updateById(friend);
     }
+
 }
 
 
