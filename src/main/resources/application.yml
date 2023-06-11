@@ -11,7 +11,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/soul_mate
     username: root
-    password: luo147258
+    password: zzc9201095
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       # 初始化时建立物理连接的个数

@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 队伍
  *
- * @author luokunsong
+ * @author zzc
  * @TableName team
  */
 @TableName(value = "team")

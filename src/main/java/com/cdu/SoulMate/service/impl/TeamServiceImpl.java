@@ -37,9 +37,8 @@ import static com.cdu.SoulMate.contant.TeamConstant.*;
 import static com.cdu.SoulMate.utils.StringUtils.stringJsonListToLongSet;
 
 /**
- * @author luokunsong
+ * @author zzc
  * @description 针对表【team(队伍)】的数据库操作Service实现
- * @createDate 2023-03-08 23:14:16
  */
 @Service
 @Slf4j

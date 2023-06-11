@@ -1,8 +1,7 @@
 package com.cdu.SoulMate.contant;
 
 /**
- * @author luokunsong
- * @Date: 2023年01月18日 21:54
+ * @author zzc
  * @Version: 1.0
  * @Description: 用户常量
  */
