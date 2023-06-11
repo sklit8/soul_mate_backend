@@ -43,7 +43,7 @@ import static com.cdu.SoulMate.utils.StringUtils.stringJsonListToLongSet;
 @Service
 @Slf4j
 public class TeamServiceImpl extends ServiceImpl<TeamMapper, Team> implements TeamService {
-    private static final String SALT = "qimu_team";
+    private static final String SALT = "cdu_team";
     private static final String BY_TEAM_IDS = String.format("soul_mate:team:getTeamListByTeamIds:%s", "byTeamIds");
     private static final String TEAMS_KEY = String.format("soul_mate:team:getTeams:%s", "getTeams");
     @Resource
